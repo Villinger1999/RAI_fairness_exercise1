@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from fairlearn.metrics import false_positive_rate,true_positive_rate
 
 
-def plot_roc_simple(y_test, y_prob, a_test,y_pred,sensitive_attribute_name=None):
+def plot_roc_simple(y_test, y_prob, a_test,y_pred,sensitive_attribute_name=None, stack=None):
     df = pd.DataFrame({'y_test': y_test, 'y_prob': y_prob, 'a_test': a_test, 'y_pred': y_pred})
 
     # Plot ROC curves grouped by 'a_test'
@@ -36,4 +36,6 @@ def plot_roc_simple(y_test, y_prob, a_test,y_pred,sensitive_attribute_name=None)
         plt.title(f'ROC Curve grouped by {sensitive_attribute_name}')
     else: plt.title(f'ROC Curve grouped')
     plt.legend(loc="lower right")
-    plt.show()
+    
+    if not stack:
+        plt.show()      
